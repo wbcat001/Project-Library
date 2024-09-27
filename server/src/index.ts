@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import router from "./routes/userRoutes"
 import {bookRouter} from "./routes/bookRoutes";
 import {generateRouter} from "./routes/generateRoutes";
+import {gutenbergRouter} from "./routes/gutenbergRoutes";
 import pool from "./db";
 import {User} from "./types";
 
@@ -17,45 +18,12 @@ app.use(express.json());
 app.use("/users", router );
 app.use("/books", bookRouter );
 app.use("/generate", generateRouter)
-// app.use("/api", userRoutes)
+app.use("/gutenberg", gutenbergRouter)
+app.use(express.static("uploads"));
+
 const PORT = process.env.PORT;
 
-// app.get("/", (request: Request, response: Response) => { 
-//   response.status(200).send("Hello World");
-// }); 
 
-// app.post("/users", async (req, res) => {
-//   const {name, email} = req.body;
-//   const [result] = await pool.query("INSERT INTO users (name, email) VALUES(?, ?)", [name, email]);
-//   res.status(201).json({ id: (result as any).insertId, name, email});
-// })
-
-// // Read
-// app.get("/users", async (req, res) => {
-//   const [rows] = await pool.query("SELECT * FROM users");
-//   const users: User[] = rows as User[];
-//   res.json(rows);
-// })
-
-// app.get("/users/:id", async (req, res) => {
-//   const {id} = req.params;
-
-//   const [rows] = await pool.query("SELECT * FROM users WHERE id = ?", [id]);
-//   res.status(200).json(rows[0]);
-// })
-
-
-// app.put("/users/:id", async (req, res) => {
-//   const {id} = req.params;
-//   const {name, email} = req.body;
-//   await pool.query("UPDATE users SET name = ?, email = ? WHERE id = ?", [name, email, id]);
-//   res.status(200).json({id, name, email});
-// })
-
-// app.delete("/user/:id", async (req, res) => {
-//   const {id} = req.params;
-//   await pool.query("DELETE FROM users WHERE id = ?", [id])
-// })
 
 
 

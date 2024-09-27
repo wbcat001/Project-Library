@@ -1,6 +1,7 @@
 export interface Book{
     title: string,
     author: string,
+    contentURL: string
 }
 
 export interface BookResponse {
@@ -8,6 +9,7 @@ export interface BookResponse {
     title: string;
     author: string;
     modelURL: string,
+    contentURL: string,
     createdAt: Date;
     updatedAt: Date;
 }
@@ -16,4 +18,5 @@ export interface BookRequest{
     title: string,
     author: string,
     modelURL: string,
+    contentURL: string,
 }

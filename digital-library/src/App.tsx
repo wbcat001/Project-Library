@@ -9,6 +9,8 @@ import { SphereSample } from "./pages/Sphere";
 import UserForm from "./pages/createDemo";
 import BookSelectionPage from "./pages/BookSelector";
 import Demo from "./pages/Demo";
+import {OutlineDemo} from "./pages/outlineDemo";
+ 
 function App() {
   return (
     

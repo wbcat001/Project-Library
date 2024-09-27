@@ -18,6 +18,7 @@ export const registBook = async (book: Book) => {
             title: book.title,
             author: book.author,
             modelURL: responseJson.modelURL,
+            contentURL: book.contentURL
         }
         console.log("BookRequest:", bookRequest);
 
@@ -58,3 +59,45 @@ export const getBooks = async (): Promise<BookResponse[]> =>{
         return [];
     }
 }
+
+
+export const getGutenbergBooks = async (): Promise<Book[]> => {
+    const rensponse = await fetch("http://localhost:3001/gutenberg",{
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }}
+    );
+
+    if(rensponse.ok){
+        const gutenbergBooks = await rensponse.json();
+        console.log("gutenbergBooks", gutenbergBooks);
+        return gutenbergBooks;
+    }else{
+        console.error("Failed to get book list")
+        return [];
+    }
+
+}
+
+
+export const getBookText = async (contentURL:string): Promise<string> => {
+    
+    const response = await fetch(contentURL, {
+        method:"GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    if(response.ok){
+        const bookText = await response.text();
+        // console.log("text of selected book.", bookText);
+        console.log("download finish");
+        return bookText;
+    }else{
+        console.error("Failed to get book text")
+        return "";
+    }
+}
+
